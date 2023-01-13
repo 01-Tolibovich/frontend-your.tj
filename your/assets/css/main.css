@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: 'Manrope';
+    }
+    h1 {
+        @apply text-[18px] leading-[25px] text-black font-bold
+    }
+    @screen md {
+        h1 {
+            @apply text-[25px] leading-[34px]
+        }
+    }
+    @screen xl{
+        h1 {
+            @apply text-[32px] leading-[44px]
+        }
+    }
+
+    /* ____________________________________________________ */
+
+    h2 {
+        @apply text-base text-black font-bold
+    }
+    @screen md {
+        h2 {
+            @apply text-xl
+        }
+    }
+    @screen xl {
+        h2 {
+            @apply text-2xl
+        }
+    }
+
+    /* ____________________________________________________ */
+
+    h3 {
+        @apply text-sm text-black font-bold
+    }
+    @screen md {
+        h3 {
+            @apply text-base
+        }
+    }
+    @screen xl {
+        h3 {
+            @apply text-lg
+        }
+    }
+
+    /* ____________________________________________________ */
+
+    p {
+        @apply text-xs text-black
+    }
+    @screen md {
+        p {
+            @apply text-sm
+        }
+    }
+    @screen xl {
+        p {
+            @apply text-sm
+        }
+    }
+
+    /* ____________________________________________________ */
+
+    span {
+        @apply text-[10px] text-[#575F6C]
+    }
+    @screen md {
+        span {
+            @apply text-xs
+        }
+    }
+    @screen xl {
+        span {
+            @apply text-xs
+        }
+    }
+
+    /* ____________________________________________________ */
+
+    a {
+        @apply text-[10px] text-[#0048B7]
+    }
+    @screen md {
+        a {
+            @apply text-sm
+        }
+    }
+    @screen xl {
+        
+    }
+}
