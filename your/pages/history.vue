@@ -1,69 +1,43 @@
 <template>
-  <div class="index-page">
-    <h1 class="text-sm my-6">Новости</h1>
-    <section>
-      <article>
-        <div class="topNews">
-          <topNews
-            v-for="item in news_in_header"
-            :key="item.index"
-            :top_news="item"
-          />
-        </div>
-        <div>
-          <MainNews
-            v-for="item in mainNews"
-            :key="item.index"
-            :main_news="item"
-          />
-        </div>
-        <div class="partner-material-parrent grid md:grid-flow-col gap-4 mb-8">
-          <partnerMaterial
-            v-for="item in PartnerMaterial"
-            :key="item.index"
-            :partner_material="item"
-          />
-        </div>
-        <div class="news-of-the-day_">
-          <NewsTitle
-            class="news-title_"
-            v-for="item in newsTitle"
-            :key="item.index"
-            :news_title="item"
-          />
-            <NewsParagraph
-              class="news-paragraph_"
-              v-for="item in newsParagraph"
-              :key="item.index"
-              :news_paragraph="item"
-            />
-        </div>
-      </article>
-    </section>
+  <div class="history">
+    <h1 class="text-sm my-6">История</h1>
+    <main>
+      <topNews
+        v-for="item in news_in_header"
+        :key="item.index"
+        :top_news="item"
+      />
+    </main>
+    <article class="news-of-the-day_">
+      <NewsTitle
+        class="news-title_"
+        v-for="item in newsTitle"
+        :key="item.index"
+        :news_title="item"
+      />
+      <NewsParagraph
+        class="news-paragraph_"
+        v-for="item in newsParagraph"
+        :key="item.index"
+        :news_paragraph="item"
+      />
+    </article>
+    <div class="partner-material-parrent grid md:grid-flow-col gap-4 mb-8">
+      <partnerMaterial
+        v-for="item in PartnerMaterial"
+        :key="item.index"
+        :partner_material="item"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import NewsTitle from "../components/news-of-the-day/news-title";
-import MainNews from "../components/main-news";
 import topNews from "../components/top-news.vue";
-import mainNews from "../components/main-news.vue";
 import partnerMaterial from "../components/partner-section/partner-material.vue";
-import newsOfTheDay from "../components/news-of-the-day/news-title.vue";
-import NewsParagraph from "../components/news-of-the-day/news-paragraph.vue";
-import newsTitle from "../components/news-of-the-day/news-title.vue";
 export default {
-  name: "IndexPage",
-  components: {
-    NewsTitle,
-    MainNews,
-    topNews,
-    mainNews,
-    partnerMaterial,
-    newsOfTheDay,
-    NewsParagraph,
-    newsTitle
-  },
+  name: "history",
+  components: { topNews, partnerMaterial },
   data() {
     return {
       news_in_header: [
@@ -72,19 +46,6 @@ export default {
           title:
             "Струнами сердца. Кто он, первый таджикистанец, участник One Beat?",
           author: "А. Гафуров К. Умедзода",
-        },
-        {
-          image: "image.jpg",
-          title:
-            "Струнами сердца. Кто он, первый таджикистанец, участник One Beat?",
-          author: "А. Гафуров К. Умедзода",
-        },
-      ],
-      mainNews: [
-        {
-          title:
-            "«На свет надежды нет». Почему на севере Таджикистана стали актуальными кизяк и дрова?",
-          time: "Свет выключают, а денег на уголь не хватает.",
         },
       ],
       PartnerMaterial: [
@@ -145,11 +106,29 @@ export default {
 </script>
 
 <style>
-.topNews {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+.history .top-news figure {
+  height: 220px;
 }
+.history .top-news img {
+  height: 220px;
+}
+@media (min-width: 768px) {
+  .history .top-news figure {
+    height: 347px;
+  }
+  .history .top-news img {
+    height: 347px;
+  }
+}
+@media (min-width: 1024px) {
+  .history .top-news figure {
+    height: 475px;
+  }
+  .history .top-news img {
+    height: 475px;
+  }
+}
+
 .partner-material-parrent :nth-child(1) figcaption {
   background-color: #000000;
   border: 2px solid #000000;
@@ -174,5 +153,4 @@ export default {
 .partner-material-parrent :nth-child(3) figcaption h3 {
   color: #ffffff;
 }
-/* ________________________________________________ */
 </style>
