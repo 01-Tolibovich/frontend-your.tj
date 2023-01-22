@@ -1,6 +1,13 @@
 <template>
   <div class="news">
     <h1 class=" text-sm my-6 ">Подкасты</h1>
+    <div class="partner-material-parrent grid md:grid-flow-col gap-4 mb-8">
+          <partnerMaterial
+            v-for="item in PartnerMaterial"
+            :key="item.index"
+            :partner_material="item"
+          />
+        </div>
     <div class="news-of-the-day_">
           <NewsTitle
             class="news-title_"
@@ -21,9 +28,10 @@
 <script>
 import newsTitle from '../components/news-of-the-day/news-title.vue';
 import newsParagraph from '../components/news-of-the-day/news-paragraph.vue';
+import partnerMaterial from '../components/partner-section/partner-material.vue';
 export default {
   name: "IndexPage",
-  components: {newsTitle, newsParagraph,},
+  components: {newsTitle, newsParagraph, partnerMaterial},
   data() {
     return {
       newsTitle: [
@@ -53,6 +61,29 @@ export default {
           paragraph:
             "Цирк уехал… Как акробат из Танзании застрял в Таджикистане и уже 10 лет не может вернуться на родину",
           time: "3 часа назад",
+        },
+      ],
+      PartnerMaterial: [
+        {
+          image: "cola.jpg",
+          link: "Партнерский материал",
+          title:
+            "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
+          author: "А. Гафуров К. Умедзода",
+        },
+        {
+          image: "cola.jpg",
+          link: "Партнерский материал",
+          title:
+            "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
+          author: "А. Гафуров К. Умедзода",
+        },
+        {
+          image: "cola.jpg",
+          link: "Партнерский материал",
+          title:
+            "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
+          author: "А. Гафуров К. Умедзода",
         },
       ],
     }

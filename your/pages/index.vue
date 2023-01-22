@@ -1,7 +1,7 @@
 <template>
   <div class="index-page">
-    <h1 class="text-sm my-6">Новости</h1>
-    <section>
+    <h1 class=" limit-width text-sm my-6 ">Новости</h1>
+    <section class="limit-width">
       <article>
         <div class="topNews">
           <topNews
@@ -31,14 +31,40 @@
             :key="item.index"
             :news_title="item"
           />
-            <NewsParagraph
-              class="news-paragraph_"
-              v-for="item in newsParagraph"
-              :key="item.index"
-              :news_paragraph="item"
-            />
+          <NewsParagraph
+            class="news-paragraph_"
+            v-for="item in newsParagraph"
+            :key="item.index"
+            :news_paragraph="item"
+          />
         </div>
       </article>
+    </section>
+    <section class=" bg-[#F3F4F6] overflow-x-hidden ml-4">
+      <div class="limit-width-child-for-full-bg">
+        <div class="mt-6 mb-4 flex">
+          <h1>Афиша</h1>
+          <nuxt-lint to="/">Предложить мероприятие</nuxt-lint>
+        </div>
+        <VueSlickCarousel v-bind="settings">
+          <div v-for="slide in slides" :key="slide.index">
+            <figure class="grid grid-rows-2 gap-4 bg-white  mb-20 mx-4">
+              <img
+                class="h-full rounded-t-lg"
+                :src="require(`../assets/images/${slide.image}`)"
+                alt=""
+              />
+              <figcaption class="p-4 rounded-b-lg">
+                <span href="/">{{ slide.date }}</span>
+                <h3 class="text-black border-b-2 border-dashed py-2 mb-2">{{ slide.title }}</h3>
+                <span class="mt-4">{{ slide.price }}</span>
+                <br>
+                <span>{{ slide.adress }}</span>
+              </figcaption>
+            </figure>
+          </div>
+        </VueSlickCarousel>
+      </div>
     </section>
   </div>
 </template>
@@ -52,6 +78,11 @@ import partnerMaterial from "../components/partner-section/partner-material.vue"
 import newsOfTheDay from "../components/news-of-the-day/news-title.vue";
 import NewsParagraph from "../components/news-of-the-day/news-paragraph.vue";
 import newsTitle from "../components/news-of-the-day/news-title.vue";
+
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+// optional style for arrows & dots
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
   name: "IndexPage",
   components: {
@@ -62,10 +93,44 @@ export default {
     partnerMaterial,
     newsOfTheDay,
     NewsParagraph,
-    newsTitle
+    newsTitle,
+    VueSlickCarousel,
   },
   data() {
     return {
+      settings: {
+        arrows: true,
+        dots: false,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: true,
+        autoplay: false,
+        autoplaySpeed: 2000,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3.08,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2.07,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1.06,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
       news_in_header: [
         {
           image: "image.jpg",
@@ -137,6 +202,43 @@ export default {
           paragraph:
             "Цирк уехал… Как акробат из Танзании застрял в Таджикистане и уже 10 лет не может вернуться на родину",
           time: "3 часа назад",
+        },
+      ],
+      slides: [
+        {
+          image: "cola.jpg",
+          date: "18:00 - 12 ноября 2021, Пятница",
+          title: "Фото и видео выставка синематик проекта «GRAIN»",
+          price: "Бесплатно",
+          adress: "Душанбе, Отель Серена",
+        },
+        {
+          image: "cola.jpg",
+          date: "18:00 - 12 ноября 2021, Пятница",
+          title: "Фото и видео выставка синематик проекта «GRAIN»",
+          price: "Бесплатно",
+          adress: "Душанбе, Отель Серена",
+        },
+        {
+          image: "cola.jpg",
+          date: "18:00 - 12 ноября 2021, Пятница",
+          title: "Фото и видео выставка синематик проекта «GRAIN»",
+          price: "Бесплатно",
+          adress: "Душанбе, Отель Серена",
+        },
+        {
+          image: "cola.jpg",
+          date: "18:00 - 12 ноября 2021, Пятница",
+          title: "Фото и видео выставка синематик проекта «GRAIN»",
+          price: "Бесплатно",
+          adress: "Душанбе, Отель Серена",
+        },
+        {
+          image: "cola.jpg",
+          date: "18:00 - 12 ноября 2021, Пятница",
+          title: "Фото и видео выставка синематик проекта «GRAIN»",
+          price: "Бесплатно",
+          adress: "Душанбе, Отель Серена",
         },
       ],
     };

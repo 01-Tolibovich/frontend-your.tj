@@ -6,6 +6,13 @@
     body {
         font-family: 'Manrope';
     }
+    .limit-width {
+        @apply mx-auto max-w-7xl px-4
+    }
+    .limit-width-child-for-full-bg {
+        @apply mx-auto max-w-7xl
+    }
+
     h1 {
         @apply text-[18px] leading-[25px] text-black font-bold
     }
@@ -117,6 +124,24 @@
     }
 
     /* ____________________________________________________ */
+
+    /* .limit-width-child-for-full-bg .slick-initialized {
+        @apply mr-10
+    } */
+
+    .limit-width-child-for-full-bg .slick-arrow {
+        @apply -top-8 z-10
+    }
+    .limit-width-child-for-full-bg .slick-next {
+        @apply right-4
+    }
+    .limit-width-child-for-full-bg .slick-prev {
+        right: 6rem !important;
+        left: auto !important;
+    }
+    .limit-width-child-for-full-bg .slick-prev:before, .slick-next:before {
+        color: #0048B7 !important;
+    }
 
     .news-of-the-day_ {
         margin-bottom: 2rem;

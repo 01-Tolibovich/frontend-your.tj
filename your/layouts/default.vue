@@ -2,7 +2,7 @@
   <div>
     <topBanner/>
     <headerNavbar />
-    <div class="container mx-auto max-w-7xl px-4">
+    <div>
       <nuxt />
     </div>
   </div>
