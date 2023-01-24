@@ -1,5 +1,5 @@
 <template>
-  <div class="history">
+  <div class="limit-width history">
     <h1 class="text-sm my-6">История</h1>
     <main>
       <topNews
@@ -29,17 +29,102 @@
         :partner_material="item"
       />
     </div>
+    <section class="overflow-x-hidden">
+      <div class="mb-8">
+        <VueSlickCarousel v-bind="settings">
+          <div
+            class="grid gap-4"
+            v-for="slide in second_slides"
+            :key="slide.index"
+          >
+            <figure class="mx-2 grid relative h-80 md:h-96">
+              <img
+                class="h-full rounded-lg"
+                :src="require(`../assets/images/${slide.image}`)"
+                alt=""
+              />
+              <figcaption
+                class="_overlap p-4 rounded-b-lg absolute bottom-0 w-full h-full flex items-end"
+              >
+                <h3 class="text-white">
+                  {{ slide.title }}
+                </h3>
+              </figcaption>
+            </figure>
+          </div>
+        </VueSlickCarousel>
+      </div>
+    </section>
+    <div class="partner-material-parrent grid md:grid-flow-col gap-4 mb-8">
+      <partnerMaterial
+        v-for="item in PartnerMaterial"
+        :key="item.index"
+        :partner_material="item"
+      />
+    </div>
+    <article class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
+      <bottomNewsItem
+        v-for="item in bottom_news"
+        :key="item.index"
+        :bottom_news_item="item"
+      />
+    </article>
   </div>
 </template>
 
 <script>
 import topNews from "../components/top-news.vue";
 import partnerMaterial from "../components/partner-section/partner-material.vue";
+import bottomNewsItem from "../components/bottom-news-item.vue";
+
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+// optional style for arrows & dots
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+
 export default {
   name: "history",
-  components: { topNews, partnerMaterial },
+  components: {
+    topNews,
+    partnerMaterial,
+    VueSlickCarousel,
+    bottomNewsItem,
+  },
   data() {
     return {
+      settings: {
+        arrows: false,
+        dots: false,
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3.08,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2.07,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1.06,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
       news_in_header: [
         {
           image: "image.jpg",
@@ -100,6 +185,70 @@ export default {
           time: "3 часа назад",
         },
       ],
+      second_slides: [
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+      ],
+      bottom_news: [
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+      ]
     };
   },
 };

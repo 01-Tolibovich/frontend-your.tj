@@ -1,37 +1,51 @@
 <template>
-  <div class="news">
-    <h1 class=" text-sm my-6 ">Подкасты</h1>
+  <div class="limit-width news">
+    <h1 class="text-sm my-6">Подкасты</h1>
     <div class="partner-material-parrent grid md:grid-flow-col gap-4 mb-8">
-          <partnerMaterial
-            v-for="item in PartnerMaterial"
-            :key="item.index"
-            :partner_material="item"
-          />
-        </div>
+      <newsVideoItems
+        v-for="video in videoItems"
+        :key="video.index"
+        :news_video_items="video"
+      />
+    </div>
+    <div class="topNews mb-8">
+      <topNewsVideo
+      v-for="video in TopNewsVideo"
+      :key="video.index"
+      :top_news_video="video"
+      />
+    </div>
     <div class="news-of-the-day_">
-          <NewsTitle
-            class="news-title_"
-            v-for="item in newsTitle"
-            :key="item.index"
-            :news_title="item"
-          />
-            <NewsParagraph
-              class="news-paragraph_"
-              v-for="item in newsParagraph"
-              :key="item.index"
-              :news_paragraph="item"
-            />
-        </div>
+      <NewsTitle
+        class="news-title_"
+        v-for="item in newsTitle"
+        :key="item.index"
+        :news_title="item"
+      />
+      <NewsParagraph
+        class="news-paragraph_"
+        v-for="item in newsParagraph"
+        :key="item.index"
+        :news_paragraph="item"
+      />
+    </div>
+    
   </div>
 </template>
 
 <script>
-import newsTitle from '../components/news-of-the-day/news-title.vue';
-import newsParagraph from '../components/news-of-the-day/news-paragraph.vue';
-import partnerMaterial from '../components/partner-section/partner-material.vue';
+import newsTitle from "../components/news-of-the-day/news-title.vue";
+import newsParagraph from "../components/news-of-the-day/news-paragraph.vue";
+import newsVideoItems from "../components/news-video-items.vue";
+import topNewsVideo from "../components/top-news-video.vue";
 export default {
   name: "IndexPage",
-  components: {newsTitle, newsParagraph, partnerMaterial},
+  components: {
+    newsTitle,
+    newsParagraph,
+    newsVideoItems,
+    topNewsVideo
+  },
   data() {
     return {
       newsTitle: [
@@ -63,30 +77,33 @@ export default {
           time: "3 часа назад",
         },
       ],
-      PartnerMaterial: [
+      videoItems: [
         {
-          image: "cola.jpg",
-          link: "Партнерский материал",
+          link: "Новости",
           title:
             "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
           author: "А. Гафуров К. Умедзода",
         },
         {
-          image: "cola.jpg",
-          link: "Партнерский материал",
+          link: "Новости",
           title:
             "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
           author: "А. Гафуров К. Умедзода",
         },
         {
-          image: "cola.jpg",
-          link: "Партнерский материал",
+          link: "Новости",
           title:
             "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
           author: "А. Гафуров К. Умедзода",
         },
       ],
-    }
-  }
+      TopNewsVideo: [
+        {
+          title: "Струнами сердца. Кто он, первый таджикистанец, участник One Beat?",
+          author: "А. Гафуров К. Умедзода"
+        }
+      ]
+    };
+  },
 };
 </script>

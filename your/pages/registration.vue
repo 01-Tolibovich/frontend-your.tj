@@ -1,5 +1,5 @@
 <template>
-  <div class="registration"></div>
+  <div class="limit-width registration"></div>
 </template>
 
 <script>

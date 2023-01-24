@@ -1,6 +1,6 @@
 <template>
   <div class="index-page">
-    <h1 class=" limit-width text-sm my-6 ">Новости</h1>
+    <h1 class="limit-width text-sm my-6">Новости</h1>
     <section class="limit-width">
       <article>
         <div class="topNews">
@@ -40,15 +40,17 @@
         </div>
       </article>
     </section>
-    <section class=" bg-[#F3F4F6] overflow-x-hidden ml-4">
+    <section class="bg-[#F3F4F6] overflow-x-hidden ml-4">
       <div class="limit-width-child-for-full-bg">
-        <div class="mt-6 mb-4 flex">
+        <div class="mt-16 mb-4 flex items-center gap-4">
           <h1>Афиша</h1>
-          <nuxt-lint to="/">Предложить мероприятие</nuxt-lint>
+          <nuxt-lint to="/" class="text-[#0048B7]"
+            >Предложить мероприятие</nuxt-lint
+          >
         </div>
         <VueSlickCarousel v-bind="settings">
           <div v-for="slide in slides" :key="slide.index">
-            <figure class="grid grid-rows-2 gap-4 bg-white  mb-20 mx-4">
+            <figure class="grid grid-rows-2 gap-4 bg-white mb-20 mx-2">
               <img
                 class="h-full rounded-t-lg"
                 :src="require(`../assets/images/${slide.image}`)"
@@ -56,9 +58,11 @@
               />
               <figcaption class="p-4 rounded-b-lg">
                 <span href="/">{{ slide.date }}</span>
-                <h3 class="text-black border-b-2 border-dashed py-2 mb-2">{{ slide.title }}</h3>
+                <h3 class="text-black border-b-2 border-dashed py-2 mb-2">
+                  {{ slide.title }}
+                </h3>
                 <span class="mt-4">{{ slide.price }}</span>
-                <br>
+                <br />
                 <span>{{ slide.adress }}</span>
               </figcaption>
             </figure>
@@ -66,10 +70,95 @@
         </VueSlickCarousel>
       </div>
     </section>
+    <section class="limit-width">
+      <div
+        class="partner-material-parrent grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-4 mt-8"
+      >
+        <partnerMaterial
+          v-for="item in PartnerMaterial_2"
+          :key="item.index"
+          :partner_material="item"
+        />
+        <newsletterSubscription
+          class="sm:col-start-1 sm:col-end-3 md:col-start-2 md:col-end-3 lg:col-start-3 lg:col-end-4"
+          v-for="item in newsletterSubscription"
+          :key="item.index"
+          :newsletter_subscription="item"
+        />
+        <Advertisement
+          class="sm:col-start-1 sm:col-end-3 md:col-start-1 md:col-end-2 md:row-start-2 md:row-end-3 lg:row-start-2 lg:col-start-1 lg:col-end-3"
+        />
+      </div>
+    </section>
+    <section class="bg-[#F3F4F6] overflow-x-hidden ml-4">
+      <div class="limit-width-child-for-full-bg my-16">
+        <div class="mt-16 mb-4 flex items-center gap-4">
+          <h1>Спецпроекты</h1>
+          <nuxt-lint to="/" class="text-[#0048B7]"
+            >Предложить мероприятие</nuxt-lint
+          >
+        </div>
+        <VueSlickCarousel v-bind="settings">
+          <div
+            class="grid gap-4"
+            v-for="slide in second_slides"
+            :key="slide.index"
+          >
+            <figure class="mx-2 grid relative h-80 md:h-96">
+              <img
+                class="h-full rounded-lg"
+                :src="require(`../assets/images/${slide.image}`)"
+                alt=""
+              />
+              <figcaption
+                class="_overlap p-4 rounded-b-lg absolute bottom-0 w-full h-full flex items-end"
+              >
+                <h3 class="text-white">
+                  {{ slide.title }}
+                </h3>
+              </figcaption>
+            </figure>
+          </div>
+        </VueSlickCarousel>
+      </div>
+    </section>
+    <section class="limit-width">
+      <article>
+        <div class="partner-material-parrent grid md:grid-flow-col gap-4 my-8">
+          <partnerMaterial
+            v-for="item in PartnerMaterial"
+            :key="item.index"
+            :partner_material="item"
+          />
+        </div>
+        <div class="news-of-the-day_">
+          <NewsTitle
+            class="news-title_"
+            v-for="item in newsTitle"
+            :key="item.index"
+            :news_title="item"
+          />
+          <NewsParagraph
+            class="news-paragraph_"
+            v-for="item in newsParagraph"
+            :key="item.index"
+            :news_paragraph="item"
+          />
+        </div>
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
+          <bottomNewsItem
+          v-for="item in bottom_news"
+          :key="item.index"
+          :bottom_news_item="item"
+          />
+        </div>
+      </article>
+    </section>
   </div>
 </template>
 
 <script>
+import Advertisement from "../components/advertisement";
 import NewsTitle from "../components/news-of-the-day/news-title";
 import MainNews from "../components/main-news";
 import topNews from "../components/top-news.vue";
@@ -78,6 +167,9 @@ import partnerMaterial from "../components/partner-section/partner-material.vue"
 import newsOfTheDay from "../components/news-of-the-day/news-title.vue";
 import NewsParagraph from "../components/news-of-the-day/news-paragraph.vue";
 import newsTitle from "../components/news-of-the-day/news-title.vue";
+import newsletterSubscription from "../components/newsletter-subscription.vue";
+import advertisement from "../components/advertisement.vue";
+import bottomNewsItem from "../components/bottom-news-item.vue";
 
 import VueSlickCarousel from "vue-slick-carousel";
 import "vue-slick-carousel/dist/vue-slick-carousel.css";
@@ -86,6 +178,7 @@ import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
   name: "IndexPage",
   components: {
+    Advertisement,
     NewsTitle,
     MainNews,
     topNews,
@@ -95,6 +188,9 @@ export default {
     NewsParagraph,
     newsTitle,
     VueSlickCarousel,
+    newsletterSubscription,
+    advertisement,
+    bottomNewsItem
   },
   data() {
     return {
@@ -105,7 +201,7 @@ export default {
         slidesToShow: 4,
         slidesToScroll: 1,
         arrows: true,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 2000,
         responsive: [
           {
@@ -241,40 +337,107 @@ export default {
           adress: "Душанбе, Отель Серена",
         },
       ],
+      PartnerMaterial_2: [
+        {
+          image: "cola.jpg",
+          link: "Партнерский материал",
+          title:
+            "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
+          author: "А. Гафуров К. Умедзода",
+        },
+        {
+          image: "cola.jpg",
+          link: "Партнерский материал",
+          title:
+            "Впервые представленная в 2005 году, Coca‑Cola Без Сахара к настоящему времени стала  успешным брендом по всему миру.",
+          author: "А. Гафуров К. Умедзода",
+        },
+      ],
+      newsletterSubscription: [
+        {
+          title: "БУДЬТЕ В КУРСЕ",
+          paragraph:
+            "Не упустите главное - все лучшее за неделю в вашей почте!",
+        },
+      ],
+      second_slides: [
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+        {
+          image: "2808.jpg",
+          title:
+            "«На свет надежды нет». Почему на севере Таджикистана стали кизяк",
+        },
+      ],
+      bottom_news: [
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+        {
+          image: "media_placeholder.jpg",
+          paragraph: "Как в Турсунзаде смогли сохранить одну из самых больших школ дутара в Таджикистане",
+          date: "5 дней назад"
+        },
+      ]
     };
   },
 };
 </script>
 
 <style>
-.topNews {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-.partner-material-parrent :nth-child(1) figcaption {
-  background-color: #000000;
-  border: 2px solid #000000;
-  border-top: 0;
-}
-.partner-material-parrent :nth-child(1) figcaption h3 {
-  color: #ffffff;
-}
-.partner-material-parrent :nth-child(2) figcaption {
-  background-color: #ffffff;
-  border: 2px solid #cfcfcf;
-  border-top: 0;
-}
-.partner-material-parrent :nth-child(2) figcaption h3 {
-  color: #000000;
-}
-.partner-material-parrent :nth-child(3) figcaption {
-  background-color: #000000;
-  border: 2px solid #000000;
-  border-top: 0;
-}
-.partner-material-parrent :nth-child(3) figcaption h3 {
-  color: #ffffff;
-}
 /* ________________________________________________ */
+
+._overlap {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.804359243697479) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
 </style>

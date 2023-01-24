@@ -1,5 +1,5 @@
 <template>
-  <div class="profile"></div>
+  <div class="limit-width profile"></div>
 </template>
 
 <script>
