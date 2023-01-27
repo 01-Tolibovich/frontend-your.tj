@@ -163,6 +163,20 @@
         border: 2px solid #cfcfcf;
         border-radius: 12px;
       }
+
+      ._play-button {
+        transform: translate(-50%, -50%);
+        z-index: 20;
+      }
+      ._overlap {
+        background: rgb(0, 0, 0);
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.804359243697479) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+
       @screen sm {
         .news-of-the-day_  {
           display: grid;

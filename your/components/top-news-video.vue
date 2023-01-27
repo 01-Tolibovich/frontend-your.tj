@@ -1,36 +1,35 @@
 <template>
   <div class="top-news-video">
-    <div  class="relative h-[220px] md:h-[287px] lg:h-[354px] rounded-xl">
-      <iframe
-        class="rounded-xl"
-        width="100%"
-        height="100%"
-        src="https://www.youtube.com/embed/OWcf7RN7mdQ"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-      <!-- <video controls="true">
-        <source src="blob:https://www.youtube.com/4e06d2e6-848f-4303-b199-2a22ae89acd4" type="video/mp4" />
-    </video> -->
-      <article
-        :class="{ hideTextContent: toggle }"
-        class="figcaption absolute bottom-0 left-0 px-4 py-4"
-      >
-        <h2 class="text-white">{{ top_news_video.title }}</h2>
+    <figure class="relative h-[220px] md:h-[287px] lg:h-[354px]">
+      <div class="relative">
+        <img
+          class="h-[220px] rounded-lg md:h-[287px] lg:h-[354px]"
+          :src="require(`../assets/images/${top_news_video.image}`)"
+          alt=""
+        />
+        <img
+          class="_play-button absolute top-2/4 left-1/2 w-auto h-auto cursor-pointer bg-[rgba(0,_0,_0,_0.35);] p-2 rounded-full"
+          src="../assets/images/play_button.svg"
+          alt=""
+        />
+      </div>
+      <figcaption class="figcaption absolute bottom-0 left-0 p-4">
+        <h2 @click="goToFullPost" class="text-white cursor-pointer">{{ top_news_video.title }}</h2>
         <span class="text-white opacity-70">{{ top_news_video.author }}</span>
-      </article>
-    </div>
+      </figcaption>
+    </figure>
   </div>
 </template>
 
 <script>
+import VideoPlayer from "nuxt-video-player";
+require("nuxt-video-player/src/assets/css/main.css");
 export default {
   name: "top-news-video",
+  components: { VideoPlayer },
   data() {
     return {
-        toggle: false
+      toggle: false,
     };
   },
   props: {
@@ -41,7 +40,11 @@ export default {
       },
     },
   },
-
+  methods: {
+    goToFullPost() {
+      this.$router.push(`/podcast/${this.top_news_video.id}`)
+    }
+  }
 };
 </script>
 

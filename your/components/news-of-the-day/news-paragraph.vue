@@ -1,7 +1,7 @@
 <template>
   <div class="news-paragraph">
     <div>
-      <p class="font-bold">{{ news_paragraph.paragraph }}</p>
+      <p @click="goToFullPost" class="font-bold cursor-pointer">{{ news_paragraph.paragraph }}</p>
       <span>{{ news_paragraph.time }}</span>
     </div>
   </div>
@@ -18,5 +18,10 @@ export default {
       },
     },
   },
+  methods: {
+    goToFullPost() {
+      this.$router.push(`/singleNews/${this.news_paragraph.id}`)
+    }
+  }
 };
 </script>

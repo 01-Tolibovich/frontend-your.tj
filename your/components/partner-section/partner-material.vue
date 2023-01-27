@@ -4,7 +4,7 @@
             <img class="h-full rounded-t-lg" :src="require(`../../assets/images/${partner_material.image}`)" alt="">
             <figcaption class="figcaption p-4 rounded-b-lg">
                 <a href="/">{{ partner_material.link }}</a>
-                <h3 class="text-black">{{ partner_material.title }}</h3>
+                <h3 @click="goToFullPost" class="text-black cursor-pointer">{{ partner_material.title }}</h3>
                 <span>{{ partner_material.author }}</span>
             </figcaption>
         </figure>
@@ -21,7 +21,12 @@ export default {
                 return{}
             }
         }
+    },
+    methods: {
+    goToFullPost() {
+      this.$router.push(`/singleNews/${this.partner_material.id}`)
     }
+  }
 }
 </script>
 
